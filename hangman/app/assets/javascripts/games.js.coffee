@@ -15,9 +15,22 @@ HangmanApp.config ["$routeProvider", "$locationProvider", ($routeProvider, $loca
 ]
 
 # Games Controller
-GamesApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
+HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
 
   $scope.games = []
+  $scope.hiddenWord = '';
+  $scope.word = ''
+
+  $scope.hideWord = () ->
+    $scope.hiddenWord = $scope.word
+    $scope.word = ''
+    console.log($scope.hiddenWord)
+
+  # $scope.$watch "guess", (newVal, oldVal) ->
+  #     if newVal && newVal == $scope.hiddenWord
+  #         alert "you guessed wisely: #{$scope.hiddenWord}"
+  #         $scope.guess = ""
+
 ]
 
 # Define Config for CSRF token

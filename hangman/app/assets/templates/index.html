@@ -1,3 +1,22 @@
 index.html
-
+ 
 hello world!!!!
+
+<h2>Hangman</h2>
+
+<h3>Enter a Word and Have Your Friends Guess the Word</h3>
+
+<form ng-init="hiddenWord=''" ng-submit="hiddenWord = word; word = '';">
+  <input type="text" ng-model="word" placeholder="word to be hidden">
+  <input type="submit" value="hide">
+</form>
+
+<form ng-submit="hideWord()">
+  <input type="text" ng-model="word" placeholder="word to be hidden">
+  <input type="submit" value="hide">
+</form>
+<p>hiddenWord: {{hiddenWord}}</p>
+<p>name: {{name}}</p>
+
+<br>
+<br>
