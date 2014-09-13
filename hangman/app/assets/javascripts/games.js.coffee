@@ -57,19 +57,16 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
       console.log("found a letter")
       # then assign blankWord[index] to letter
       # idxLetter = $scope.hiddenWord.indicesOf(letter)
+      # get the indicesOf the matching letters
       indices = indicesOf($scope.hiddenWord, letter)
       for idxLetter in indices
+        # iterate over each of the indices and update the displayed word
+        # with correctly guessed letter
         console.log(idxLetter)
         $scope.blankWord[idxLetter] = letter
     else
       console.log("guessed incorrectly")
       # marked as missed guess and add appendage to hangman
-
-
-
-  # $scope.splitWord = $scope.hiddenWord.split('') ->
-  #   console.log(splitWord) 
-
 
 ]
 
