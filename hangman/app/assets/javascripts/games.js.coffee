@@ -47,8 +47,12 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
 
     if letter in $scope.hiddenWord
       console.log("found a letter")
-      $scope.blankWord[0] = "H"
-      # unhide letter from $scope.hiddenWord 
+      # unhide letter from $scope.hiddenWord
+      # if letter in hiddenWord
+      # then assign blankWord[index] to letter
+      # index = array.indexOf(2)
+      idxLetter = $scope.hiddenWord.indexOf(letter)
+      $scope.blankWord[idxLetter] = letter 
     else
       console.log("guessed incorrectly")
       # marked as missed guess and add appendage to hangman
