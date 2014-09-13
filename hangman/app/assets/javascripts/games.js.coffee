@@ -25,6 +25,7 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
     $scope.hiddenWord = $scope.word.toUpperCase().split('')
     $scope.word = ''
     console.log($scope.hiddenWord)
+    $scope.count = 0
 
     $scope.blankWord = []
     for letter in $scope.hiddenWord
@@ -47,26 +48,31 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
     return indices
 
   $scope.hideButton = (letter) ->
+    $scope.count += 1
+    console.log("count", $scope.count)
     console.log(letter)
     console.log($scope.hiddenWord)
     # hide letter from keypad
-    index = $scope.letters.indexOf(letter)
-    $scope.hideLetter[index] = true
 
-    if letter in $scope.hiddenWord
-      console.log("found a letter")
-      # then assign blankWord[index] to letter
-      # idxLetter = $scope.hiddenWord.indicesOf(letter)
-      # get the indicesOf the matching letters
-      indices = indicesOf($scope.hiddenWord, letter)
-      for idxLetter in indices
-        # iterate over each of the indices and update the displayed word
-        # with correctly guessed letter
-        console.log(idxLetter)
-        $scope.blankWord[idxLetter] = letter
+    if $scope.count <= 6
+      index = $scope.letters.indexOf(letter)
+      $scope.hideLetter[index] = true      
+      if letter in $scope.hiddenWord
+        console.log("found a letter")
+        # then assign blankWord[index] to letter
+        # idxLetter = $scope.hiddenWord.indicesOf(letter)
+        # get the indicesOf the matching letters
+        indices = indicesOf($scope.hiddenWord, letter)
+        for idxLetter in indices
+          # iterate over each of the indices and update the displayed word
+          # with correctly guessed letter
+          console.log(idxLetter)
+          $scope.blankWord[idxLetter] = letter
+      else
+        console.log("guessed incorrectly")
+        # marked as missed guess and add appendage to hangman
     else
-      console.log("guessed incorrectly")
-      # marked as missed guess and add appendage to hangman
+      console.log("Game Over!")
 
 ]
 
