@@ -38,6 +38,14 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   $scope.letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "-"]
   $scope.hideLetter = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,false, false, false, false, false,false, false, false, false, false,false, false, false, false, false,]
 
+  indicesOf = (array, element) ->
+    indices =[]
+    idx = array.indexOf(element)
+    while idx != -1
+      indices.push( idx )
+      idx = array.indexOf(element, idx + 1)
+    return indices
+
   $scope.hideButton = (letter) ->
     console.log(letter)
     console.log($scope.hiddenWord)
@@ -47,21 +55,15 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
 
     if letter in $scope.hiddenWord
       console.log("found a letter")
-      # unhide letter from $scope.hiddenWord
-      # if letter in hiddenWord
       # then assign blankWord[index] to letter
-      # index = array.indexOf(2)
-      idxLetter = $scope.hiddenWord.indexOf(letter)
-      $scope.blankWord[idxLetter] = letter 
+      # idxLetter = $scope.hiddenWord.indicesOf(letter)
+      indices = indicesOf($scope.hiddenWord, letter)
+      for idxLetter in indices
+        console.log(idxLetter)
+        $scope.blankWord[idxLetter] = letter
     else
       console.log("guessed incorrectly")
       # marked as missed guess and add appendage to hangman
-
-
-
-
-
-
 
 
 
