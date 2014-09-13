@@ -15,11 +15,15 @@ hello world!!!!
   <input type="text" ng-model="word" placeholder="word to be hidden">
   <input type="submit" value="hide">
 </form>
+
 <p>hiddenWord: {{hiddenWord}}</p>
+
+<div ng-repeat = "letter in blankWord track by $index" style = "display:inline;"> {{letter}} &nbsp; </div>
+
 <p>name: {{name}}</p>
 
 <div ng-repeat = "letter in letters" style = "display:inline-block;">
-  <button ng-click="hideButton(letter)">{{letter}}</button>
+  <button ng-click="hideButton(letter)" ng-hide="hideLetter[$index]" class="ng-hide">{{letter}}</button>
 </div>
 
 <br>

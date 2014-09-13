@@ -22,9 +22,13 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   $scope.word = ''
 
   $scope.hideWord = () ->
-    $scope.hiddenWord = $scope.word.split('')
+    $scope.hiddenWord = $scope.word.toUpperCase().split('')
     $scope.word = ''
     console.log($scope.hiddenWord)
+
+    $scope.blankWord = []
+    for letter in $scope.hiddenWord
+      $scope.blankWord.push("_")
 
   # $scope.$watch "guess", (newVal, oldVal) ->
   #     if newVal && newVal == $scope.hiddenWord
@@ -32,10 +36,30 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   #         $scope.guess = ""
 
   $scope.letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "-"]
+  $scope.hideLetter = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,false, false, false, false, false,false, false, false, false, false,false, false, false, false, false,]
 
   $scope.hideButton = (letter) ->
     console.log(letter)
-    console.log($scope.hiddenWord)    
+    console.log($scope.hiddenWord)
+    # hide letter from keypad
+    index = $scope.letters.indexOf(letter)
+    $scope.hideLetter[index] = true
+
+    if letter in $scope.hiddenWord
+      console.log("found a letter")
+      $scope.blankWord[0] = "H"
+      # unhide letter from $scope.hiddenWord 
+    else
+      console.log("guessed incorrectly")
+      # marked as missed guess and add appendage to hangman
+
+
+
+
+
+
+
+
 
   # $scope.splitWord = $scope.hiddenWord.split('') ->
   #   console.log(splitWord) 
