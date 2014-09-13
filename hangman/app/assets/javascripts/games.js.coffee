@@ -22,7 +22,7 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   $scope.word = ''
 
   $scope.hideWord = () ->
-    $scope.hiddenWord = $scope.word
+    $scope.hiddenWord = $scope.word.split('')
     $scope.word = ''
     console.log($scope.hiddenWord)
 
@@ -31,10 +31,14 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   #         alert "you guessed wisely: #{$scope.hiddenWord}"
   #         $scope.guess = ""
 
-  $scope.letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+  $scope.letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "-"]
 
   $scope.hideButton = (letter) ->
     console.log(letter)
+    console.log($scope.hiddenWord)    
+
+  # $scope.splitWord = $scope.hiddenWord.split('') ->
+  #   console.log(splitWord) 
 
 
 ]
