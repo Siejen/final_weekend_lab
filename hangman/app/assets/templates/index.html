@@ -18,5 +18,9 @@ hello world!!!!
 <p>hiddenWord: {{hiddenWord}}</p>
 <p>name: {{name}}</p>
 
+<div ng-repeat = "letter in letters" style = "display:inline-block;">
+  <button ng-click="hideButton(letter)">{{letter}}</button>
+</div>
+
 <br>
 <br>

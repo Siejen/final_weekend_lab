@@ -31,6 +31,12 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   #         alert "you guessed wisely: #{$scope.hiddenWord}"
   #         $scope.guess = ""
 
+  $scope.letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+  $scope.hideButton = (letter) ->
+    console.log(letter)
+
+
 ]
 
 # Define Config for CSRF token
