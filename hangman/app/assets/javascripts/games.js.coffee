@@ -47,6 +47,7 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   $scope.letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "-", " "]
   $scope.hideLetter = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,false, false, false, false, false,false, false, false, false, false,false, false, false, false, false,]
 
+  # from MDN - finds the indices for each matching element (i.e. as opposed to the first matching index)
   indicesOf = (array, element) ->
     indices =[]
     idx = array.indexOf(element)
@@ -55,6 +56,7 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
       idx = array.indexOf(element, idx + 1)
     return indices
 
+  # from stack overflow
   arrayEqual = (a, b) ->
     a.length is b.length and a.every (elem, i) -> elem is b[i]
 
