@@ -21,6 +21,7 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   $scope.hiddenWord = '';
   $scope.word = ''
   $scope.gameOver = false
+  $scope.winner = false
 
   $scope.hideWord = () ->
     $scope.hiddenWord = $scope.word.toUpperCase().split('')
@@ -48,6 +49,9 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
       idx = array.indexOf(element, idx + 1)
     return indices
 
+  arrayEqual = (a, b) ->
+    a.length is b.length and a.every (elem, i) -> elem is b[i]
+
   $scope.hideButton = (letter) ->
     $scope.count += 1
     console.log("count", $scope.count)
@@ -68,7 +72,10 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
           # iterate over each of the indices and update the displayed word
           # with correctly guessed letter
           console.log(idxLetter)
-          $scope.blankWord[idxLetter] = letter
+          $scope.blankWord[idxLetter] = letter          
+          if arrayEqual($scope.hiddenWord, $scope.blankWord)
+            console.log("You Won!")
+            $scope.winner = true
       else
         console.log("guessed incorrectly")
         # marked as missed guess and add appendage to hangman
