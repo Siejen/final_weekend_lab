@@ -17,8 +17,24 @@ TodoApp.config ["$routeProvider", "$locationProvider", ($routeProvider, $locatio
 # Todo Controller
 TodoApp.controller "TodosCtrl", ["$scope", "$http", ($scope, $http) ->
 
-  $scope.todos = []
+  $scope.tasks = []
+  $scope.name = "Walk the Dog"
+  $scope.due_date = "2014-09-20"
+  $scope.task_complete = false
+
+  foo = () ->
+    console.log('hi')
+  
+  $scope.getTasks = ->
+    console.log("this is happening")
+    $http.get("/todos.json").success(foo) ->
+      console.log("this is also happening")
+      #   #$scope.tasks = data
+
+  #$scope.getTasks()
+
 ]
+
 
 # Define Config for CSRF token
 TodoApp.config ["$httpProvider", ($httpProvider)->
