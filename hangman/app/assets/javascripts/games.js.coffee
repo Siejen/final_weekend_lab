@@ -20,6 +20,7 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   $scope.games = []
   $scope.hiddenWord = '';
   $scope.word = ''
+  $scope.gameOver = false
 
   $scope.hideWord = () ->
     $scope.hiddenWord = $scope.word.toUpperCase().split('')
@@ -73,6 +74,7 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
         # marked as missed guess and add appendage to hangman
     else
       console.log("Game Over!")
+      $scope.gameOver = true
 
 ]
 
