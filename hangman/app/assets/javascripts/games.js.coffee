@@ -22,6 +22,12 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   $scope.word = ''
   $scope.gameOver = false
   $scope.winner = false
+  $scope.head = false
+  $scope.torso = false
+  $scope.leftHand = false
+  $scope.rightHand = false
+  $scope.leftFoot = false
+  $scope.rightFoot = false
 
   $scope.hideWord = () ->
     $scope.hiddenWord = $scope.word.toUpperCase().split('')
@@ -38,7 +44,7 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   #         alert "you guessed wisely: #{$scope.hiddenWord}"
   #         $scope.guess = ""
 
-  $scope.letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "-"]
+  $scope.letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "-", " "]
   $scope.hideLetter = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,false, false, false, false, false,false, false, false, false, false,false, false, false, false, false,]
 
   indicesOf = (array, element) ->
@@ -52,14 +58,29 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
   arrayEqual = (a, b) ->
     a.length is b.length and a.every (elem, i) -> elem is b[i]
 
+  drawHangman = () ->
+    if $scope.count == 1
+      $scope.head = true
+    if $scope.count == 2
+      $scope.torso = true
+    if $scope.count == 3
+      $scope.leftHand = true
+    if $scope.count == 4
+      $scope.rightHand = true
+    if $scope.count == 5
+      $scope.leftFoot = true
+    if $scope.count == 6
+      $scope.rightFoot = true    
+
   $scope.hideButton = (letter) ->
-    $scope.count += 1
     console.log("count", $scope.count)
     console.log(letter)
     console.log($scope.hiddenWord)
     # hide letter from keypad
 
-    if $scope.count <= 6
+    # if the game is in progress, then we check if the guess was a correct guess
+    # what you really want... is
+    if $scope.count < 6
       index = $scope.letters.indexOf(letter)
       $scope.hideLetter[index] = true      
       if letter in $scope.hiddenWord
@@ -72,16 +93,18 @@ HangmanApp.controller "GamesCtrl", ["$scope", "$http", ($scope, $http) ->
           # iterate over each of the indices and update the displayed word
           # with correctly guessed letter
           console.log(idxLetter)
-          $scope.blankWord[idxLetter] = letter          
+          $scope.blankWord[idxLetter] = letter
           if arrayEqual($scope.hiddenWord, $scope.blankWord)
             console.log("You Won!")
             $scope.winner = true
       else
+        $scope.count += 1
         console.log("guessed incorrectly")
         # marked as missed guess and add appendage to hangman
-    else
-      console.log("Game Over!")
-      $scope.gameOver = true
+        drawHangman()
+        if $scope.count >= 6
+          console.log("Game Over!")
+          $scope.gameOver = true
 
 ]
 

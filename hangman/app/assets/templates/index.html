@@ -29,6 +29,24 @@ index.html
 <div ng-show = "gameOver">GAME OVER!</div>
 
 <div ng-show = "winner">YOU WON THE GAME!</div>
+<br>
+<br>
+
+<svg height="600" width="600">
+  <!-- head -->
+  <circle ng-show="head" cx="200" cy="60" r="55" stroke="black" stroke-width="3" fill="yellow" />
+  <!-- torso -->
+  <line ng-show="torso" x1="200" y1="115" x2="200" y2="300" style="stroke:rgb(255,0,0);stroke-width:6"/>
+  <!--   left hand -->
+  <line ng-show="leftHand" x1="200" y1="150" x2="100" y2="150" style="stroke:rgb(255,0,255);stroke-width:5" />
+  <!--   right hand -->
+  <line ng-show="rightHand" x1="200" y1="150" x2="300" y2="150" style="stroke:rgb(255,0,255);stroke-width:5" />
+  <!--   left foot -->
+  <line ng-show="leftFoot" x1="110" y1="400" x2="200" y2="300" style="stroke:rgb(255,0,0);stroke-width:5" />
+  <!--   right foot -->
+  <line ng-show="rightFoot" x1="280" y1="400" x2="200" y2="300" style="stroke:rgb(255,0,0);stroke-width:5" />
+</svg>
+
 
 
 <br>
