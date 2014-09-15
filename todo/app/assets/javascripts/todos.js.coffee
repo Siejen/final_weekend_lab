@@ -22,16 +22,13 @@ TodoApp.controller "TodosCtrl", ["$scope", "$http", ($scope, $http) ->
   $scope.due_date = "2014-09-20"
   $scope.task_complete = false
 
-  foo = () ->
-    console.log('hi')
-  
   $scope.getTasks = ->
     console.log("this is happening")
-    $http.get("/todos.json").success(foo) ->
+    $http.get("/todos.json").success (data) ->
       console.log("this is also happening")
-      #   #$scope.tasks = data
+      $scope.tasks = data
 
-  #$scope.getTasks()
+  $scope.getTasks()
 
 ]
 
