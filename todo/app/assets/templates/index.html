@@ -5,6 +5,13 @@
 # Create a Form to Submit Task
 # Add Submit Task Button
 
+<h2>Submit a Task</h2>
+<form action="javascript:void(0);" ng-submit="addTask()">
+  <input type="text" ng-model="newTask.task_name" placeholder = "Name of Task" autofocus required>
+  <input type="text" ng-model="newTask.due_date" placeholder = "Task Due Date" required>
+  <button>Add Task</button>
+</form>
+
 <h2>Open Tasks</h2>
 <div ng-repeat = "task in tasks | orderBy: 'due_date' | filter: { task_complete: false } ">
   {{task.task_name}} {{task.due_date}} {{task.task_complete}}

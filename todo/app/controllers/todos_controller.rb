@@ -11,7 +11,9 @@ class TodosController < ApplicationController
   end
 
   def create
-    respond_with Task.create(task_params)    
+    task_data = task_params()
+    puts task_data
+    respond_with Task.create(task_data), :location => nil
   end
 
   def show
