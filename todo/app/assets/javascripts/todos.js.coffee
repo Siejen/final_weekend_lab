@@ -18,9 +18,6 @@ TodoApp.config ["$routeProvider", "$locationProvider", ($routeProvider, $locatio
 TodoApp.controller "TodosCtrl", ["$scope", "$http", ($scope, $http) ->
 
   $scope.tasks = []
-  $scope.name = "Walk the Dog"
-  $scope.due_date = "2014-09-20"
-  $scope.task_complete = false
 
   $scope.getTasks = ->
     console.log("this is happening")
@@ -29,6 +26,17 @@ TodoApp.controller "TodosCtrl", ["$scope", "$http", ($scope, $http) ->
       $scope.tasks = data
 
   $scope.getTasks()
+
+  $scope.markTaskComplete = (task) ->
+    # modify the task namely set the completed field to true
+    task.task_complete = true
+    # send a HTTP post to the correct route so that the rails controller can update the database
+    console.log(this.task.id)
+    $http.put("/todos/#{this.task.id}.json", task).success (data) ->
+      console.log(data)
+
+    # removes a task on the client-side only
+    # $scope.tasks.splice($scope.tasks.indexOf(task), 1)
 
 ]
 

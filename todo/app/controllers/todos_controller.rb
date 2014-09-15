@@ -19,7 +19,7 @@ class TodosController < ApplicationController
   end
 
   def update
-    respond_with @task.update(task_params)    
+    respond_with @task.update(task_params)
   end
 
   def destroy
@@ -32,7 +32,10 @@ class TodosController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :due_date, :task_complete)    
+    puts "================ hi there!!! ================"
+    puts params
+    puts "================ !!!ereht ih ================"
+    return params.require(:todo).permit(:task_name, :due_date, :task_complete)    
   end
 
   def render_main_layout_if_format_html

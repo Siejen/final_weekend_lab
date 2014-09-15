@@ -7,4 +7,7 @@ index.html
 # Create a Form to Submit Task
 # Add Submit Task Button
 
-<div ng-repeat = "task in tasks">{{task.task_name}}</div>
+<div ng-repeat = "task in tasks | orderBy: 'due_date' "">
+  {{task.task_name}} {{task.due_date}} {{task.task_complete}}
+  <button ng-click = "markTaskComplete(task)">Task Complete</button>
+</div>
